@@ -1,26 +1,32 @@
 import React, { useContext } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, StyleSheet, Alert } from 'react-native';
 import CartContext from '../context/CartContext';
 import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, removeFromCart } = useContext(CartContext);
   const navigation = useNavigation();
 
+  const handleRemoveItem = (productId) => {
+    removeFromCart(productId);
+    Alert.alert('Producto eliminado del carrito');
+  };
+
   const renderItem = ({ item }) => {
-    const total = item.price * item.quantity;
+    const total = item.price * (item.quantity || 1); // Asegúrate de que la cantidad tiene un valor por defecto de 1
     return (
       <View style={styles.itemContainer}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.price}>Precio unitario: ${item.price}</Text>
         <Text style={styles.quantity}>Cantidad: {item.quantity}</Text>
         <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
+        <Button title="Eliminar" onPress={() => handleRemoveItem(item._id)} />
       </View>
     );
   };
 
   const calculateTotal = () => {
-    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+    return cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0).toFixed(2); // Asegúrate de que la cantidad tiene un valor por defecto de 1
   };
 
   return (

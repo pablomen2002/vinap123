@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import styles from '../styles/CatalogScreenStyles';
 
 const CatalogScreen = () => {
   const [categories, setCategories] = useState([]);
@@ -37,17 +38,3 @@ const CatalogScreen = () => {
 };
 
 export default CatalogScreen;
-
-const styles = StyleSheet.create({
-  list: {
-    padding: 16,
-  },
-  itemContainer: {
-    marginBottom: 16,
-    alignItems: 'center',
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});

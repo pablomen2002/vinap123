@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList } from 'react-native';
 import ProductItem from '../components/ProductItem';
+import styles from '../styles/ProductsScreenStyles';
 
 const ProductsScreen = ({ route }) => {
   const { category } = route.params;
@@ -33,9 +34,3 @@ const ProductsScreen = ({ route }) => {
 };
 
 export default ProductsScreen;
-
-const styles = StyleSheet.create({
-  list: {
-    padding: 16,
-  },
-});

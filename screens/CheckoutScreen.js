@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CartContext from '../context/CartContext';
 import MapView, { Marker } from 'react-native-maps';
+import { Picker } from '@react-native-picker/picker';
+import styles from '../styles/CheckoutScreenStyles';
 
 const CheckoutScreen = () => {
   const { cart } = useContext(CartContext);
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('Efectivo');
   const [location, setLocation] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -42,13 +44,15 @@ const CheckoutScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Ingrese el método de pago:</Text>
-      <TextInput
-        style={styles.input}
-        value={paymentMethod}
-        onChangeText={setPaymentMethod}
-        placeholder="Método de Pago"
-      />
+      <Text style={styles.label}>Ingrese el método de pago:</Text>
+      <Picker
+        selectedValue={paymentMethod}
+        style={styles.picker}
+        onValueChange={(itemValue) => setPaymentMethod(itemValue)}
+      >
+        <Picker.Item label="Efectivo" value="Efectivo" />
+        <Picker.Item label="Terminal" value="Terminal" />
+      </Picker>
       <MapView
         style={styles.map}
         region={location}
@@ -56,27 +60,11 @@ const CheckoutScreen = () => {
       >
         <Marker coordinate={location} />
       </MapView>
-      <Button title="Realizar Pedido" onPress={handleOrder} />
+      <TouchableOpacity style={styles.buttonContainer} onPress={handleOrder}>
+        <Text style={styles.buttonText}>Realizar Pedido</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default CheckoutScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 8,
-  },
-  map: {
-    height: 200,
-    marginBottom: 16,
-  },
-});
