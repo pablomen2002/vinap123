@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CartContext from '../context/CartContext';
 import MapView, { Marker } from 'react-native-maps';
@@ -26,7 +26,7 @@ const CheckoutScreen = () => {
     };
 
     try {
-      const response = await fetch('http://192.168.0.57:5000/api/orders', {
+      const response = await fetch('https://vinappteria2-backend.vercel.app/api/orders', { // Actualiza la URL para apuntar a tu servidor en Vercel
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

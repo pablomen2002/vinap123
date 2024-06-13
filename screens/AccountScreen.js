@@ -15,7 +15,7 @@ const AccountScreen = ({ navigation }) => {
           console.error('No se encontró el userId');
           return;
         }
-        const response = await fetch(`http://192.168.0.57:5000/api/user/${userId}`);
+        const response = await fetch(`https://vinappteria2-backend.vercel.app/api/user/${userId}`);
         
         if (!response.ok) {
           const errorText = await response.text();
@@ -40,7 +40,7 @@ const AccountScreen = ({ navigation }) => {
         console.error('No se encontró el userId');
         return;
       }
-      const response = await fetch(`http://192.168.0.57:5000/api/user/${userId}/password`, {
+      const response = await fetch(`https://vinappteria2-backend.vercel.app/api/user/${userId}/password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

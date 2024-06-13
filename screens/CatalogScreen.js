@@ -10,7 +10,7 @@ const CatalogScreen = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://192.168.0.57:5000/api/categories'); // Usa la IP de tu PC
+        const response = await fetch('https://vinappteria2-backend.vercel.app/api/categories'); // Actualiza la URL para apuntar a tu servidor en Vercel
         const data = await response.json();
         setCategories(data);
       } catch (error) {

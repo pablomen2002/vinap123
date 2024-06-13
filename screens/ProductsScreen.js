@@ -10,7 +10,7 @@ const ProductsScreen = ({ route }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`http://192.168.0.57:5000/api/products?category=${category}`); // Usa la IP de tu PC
+        const response = await fetch(`https://vinappteria2-backend.vercel.app/api/products?category=${category}`); // Actualiza la URL para apuntar a tu servidor en Vercel
         const data = await response.json();
         setProducts(data);
       } catch (error) {

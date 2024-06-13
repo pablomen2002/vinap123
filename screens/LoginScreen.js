@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../styles/LoginScreenStyles';
 
@@ -9,7 +9,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://192.168.0.57:5000/api/login', { // Usa la IP de tu PC
+      const response = await fetch('https://vinappteria2-backend.vercel.app/api/login', { // Usa la URL de Vercel
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

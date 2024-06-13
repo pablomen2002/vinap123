@@ -7,7 +7,7 @@ const OrderStatusScreen = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch('http://192.168.0.57:5000/api/orders');
+        const response = await fetch('https://vinappteria2-backend.vercel.app/api/orders'); // Actualiza la URL para apuntar a tu servidor en Vercel
         const data = await response.json();
         setOrders(data);
       } catch (error) {
